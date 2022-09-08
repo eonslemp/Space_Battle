@@ -11,7 +11,7 @@ class Spaceship {
     }
 
 }
-const USSHW = new Spaceship(20, 5, .7)
+const USSHW = new Spaceship(7, 5, .7)
 // console.log(USSHW.accuracy)
 
 function alienArray(n){
@@ -29,58 +29,43 @@ return enemyArray
 // alienArray(2)
 let enemyArray = alienArray(6)
 
-
-
-// function playGame(player, alienArr){
-//     // for loop starts the battle sequence for the array
-//     for(i = alienArr.length; i > 0; i--){
-//         // assigns variable to alien ship
-//         let enemy = alienArr.pop()
-//         while(enemy.hull > 0){
-//             let enemyHull = enemy.hull
-//             player.attack(enemy)
-//             if (enemyHull !== enemy.hull){
-//                 console.log('direct hit!')
-//             } else {
-//                 console.log('you missed!')
-//             }
-
-//             if(enemy.hull > 0){
-//                 let playerHull = player.hull;
-//                 enemy.attack(player)
-//                 if(playerHull !== player.hull){
-//                     console.log('emotional damage!!')
-//                 } else {
-//                     console.log('they are shooting like stormtroopers!')
-//                 }
-//                 if(player.hull <= 0){
-//                     break;
-//                 } else {continue}
-//             }
-//         }
-//         if(player.hull <= 0){
-//             return false
-//         }
-//         let retreat = prompt(`your hull strength is: ${player.hull}, do you wish to retreat? enter y/n`)
-//         if(retreat === 'y'){
-//             return 'retreat'
-//         } else {
-//             continue
-//         }
-        
+// start game prompt
+// setTimeout(() => {
+//     let startMessage = window.confirm('The fate of Earth is in your hands. Are you ready?');
+//     if (startMessage) {
+//         startGame()
 //     }
-//     return true
+// }, '3000');
+
+// function for starting the game
+// function startGame () {    
+//     // start battle function
+//     if (confirm('Prepare for battle')) {
+//         playGame()
+//     }
+//     // else when player cancels
+//     else {
+//         confirm('Mission Failed')
+//     }
+
 // }
 
+
+
 function playGame(player, alienArr){
+// selects first enemy
+//   console.log(alienArr.length)
     let enemy = alienArr.pop()
-    console.log(alienArr.length)
-    while( alienArr.length > 0 ){
+// bug here!
+    while( alienArr.length >= 0 ){
+// checking if enemy is new or from previous round
         if( enemy.hull > 0){
             console.log('enemy inbound')
         } else {
+// if enemy hull is depleted then selects new enemy from array
             enemy = alienArr.pop()
         }
+// this sequence checks for effects of players attack 
         let enemyHull = enemy.hull
         player.attack(enemy)
         if (enemyHull == enemy.hull){
@@ -89,32 +74,46 @@ function playGame(player, alienArr){
         else {
             console.log('Hit!')
         }
-
-        if (enemy.hull <= 0 && alienArr.length != 0) {
+// checking to see if enemy is destroyed and if there are more enemies in array
+// if enemy is dead but enemy array is not depleted then 'continue' restarts the while loop
+        if (enemy.hull <= 0 && alienArr.length > 0) {
             console.log('enemy destroyed')
+// presents player with data and a retreat option
             let retreat = prompt(`your hull strength is: ${player.hull} with ${alienArr.length} enemy remaining, do you wish to retreat? enter y/n`)
             if(retreat === 'y'){
+                console.log('live to fight another day!')
                 return false
                 } else {
+// if player choooses to continue the fight the loop conintues
                     continue
                 }
-        } 
+// checks to see if enemy and arrays are depleted
+        } else if (enemy.hull <= 0 && alienArr.length == 0){
+            console.log('enemy destroyed-- you win!')
+            break;
+        }
+// if the enemy persists then this 'else' starts his attack sequence
         else {
             console.log('he is not destroyed yet')
+// checking player hull strength to compare after attack
             let playerHull = player.hull;
             enemy.attack(player)
+// these conditionals check for effects of the enemies attacks
             if(playerHull === player.hull){
                 console.log("they're shooting like stormtroopers!")
                 } 
             else {
                 console.log('emotional damage!!')
+                // console.log(alienArr.length)
                 if(player.hull <= 0){
+// if player hull is depleted then ends game and returns 'false'
+                    console.log('Ack! you died.')
                     return false
                     }
                 }
         }
     }
-console.log(alienArr.length)
+// console.log(alienArr.length)
 return true
 }
 
