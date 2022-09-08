@@ -50,7 +50,7 @@ align-items: center;
     background-size: cover ;
     background-position: center;
     background-repeat: no-repeat;
-    box-shadow: 0px 0px 20px 10px white;
+    box-shadow: 0px 0px 20px 10px rgb(31, 67, 200);
     
 
     
@@ -64,7 +64,7 @@ align-items: center;
     height: 15vh;
     text-align: center;
     font-size: 1.5em;
-    box-shadow: 0px 0px 20px 10px white;
+    box-shadow: 0px 0px 20px 10px rgb(31, 67, 200);
     border-radius: 2%;
 
 
@@ -77,7 +77,7 @@ align-items: center;
     background-size: cover ;
     background-position: center;
     background-repeat: no-repeat;
-    box-shadow: 0px 0px 20px 10px white;
+    box-shadow: 0px 0px 20px 10px rgb(48, 142, 70);
     
 
     
@@ -92,6 +92,6 @@ align-items: center;
     text-align: center;
     font-family: 'Share Tech Mono', monospace;
     font-size: 1.5em;
-    box-shadow: 0px 0px 20px 10px white;
+    box-shadow: 0px 0px 20px 10px rgb(48, 142, 70);
 
 }
