@@ -33,8 +33,8 @@ return enemyArray
 // alienArray(2)
 
 
-function attackEnemy(player, enemy){
-// stores enemy stats in variable for comparison
+function enemyStatus(player, enemy){
+// stores enemy hitpoints in variable for comparison
     let enemyHull = enemy.hull;
 // calls spaceship atack method
     player.attack(enemy)
@@ -47,8 +47,8 @@ function attackEnemy(player, enemy){
     }
 }
 
- function enemyAttack(player, enemy){
-// stores player's stats in a variable for comparison
+ function playerStatus(player, enemy){
+// stores player's hitponits in a variable for comparison
     let playerHull = player.hull;
 // calls spaceship attack method
     enemy.attack(player)
@@ -78,7 +78,7 @@ function playGame(player, alienArr){
             enemy = alienArr.pop()
         }
 // this sequence checks for effects of players attack 
-        attackEnemy(player, enemy)
+        enemyStatus(player, enemy)
 
 // if enemy is dead but enemy array is not depleted then 'continue' restarts the while loop
         if (enemy.hull <= 0 && alienArr.length > 0) {
@@ -100,7 +100,7 @@ function playGame(player, alienArr){
         else {
             console.log('enemy not yet neutralized')
 // calling enemyAttack 
-        enemyAttack(player, enemy)
+            playerStatus(player, enemy)
                 // console.log(alienArr.length)
             if(player.hull <= 0){
 // if player hull is depleted then ends game and returns 'false'
@@ -115,13 +115,20 @@ return true
 
 let enemyArray = alienArray(6)
 
-setTimeout(() => {
-    let startMessage = window.confirm("Enemy inbound! let's get it on!");
-    if (startMessage) {
-        let result = playGame(USSHW, enemyArray)
-        console.log(result)
-    }
-}, '500');
+// setTimeout(() => {
+//     let startMessage = window.confirm("Enemy inbound! let's get it on!");
+//     if (startMessage) {
+//         let result = playGame(USSHW, enemyArray)
+//         console.log(result)
+//     }
+// }, '500');
+
+let playerHull = document.getElementById('player-hull').innerHTML
+playerHull -= 5
+
+console.log(playerHull)
+
+
 
 // setTimeout(() => {
 //     let fightOn = window.confirm(`your hull strength is: ${player.hull} with ${alienArr.length} enemy remaining, do you want to stay in the fight? y/n`);
@@ -147,3 +154,4 @@ setTimeout(() => {
 //         console.log(x)
 //         continue
 //     }
+
